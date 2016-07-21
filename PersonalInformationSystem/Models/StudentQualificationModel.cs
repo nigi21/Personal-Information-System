@@ -21,6 +21,5 @@ namespace PersonalInformationSystem.Models
         public DateTime ModifiedOn { get; set; }
         public int DeletedBy { get; set; }
         public DateTime DeletedOn { get; set; }
-        public List<StudentQualificationModel> StudentQualificationModelList { get; set; }
     }
 }

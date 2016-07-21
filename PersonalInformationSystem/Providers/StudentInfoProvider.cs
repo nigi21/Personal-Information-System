@@ -36,14 +36,12 @@ namespace PersonalInformationSystem.Providers
             StudentInfo entityStudentInfo = new StudentInfo();
             PersonalInformationSystemEntities ent = new PersonalInformationSystemEntities();
 
+
           //var toSave = AutoMapper.Mapper.Map<StudentInfoModel, StudentInfo>(model);
 
             entityStudentInfo.StudentId = model.StudentId;
             entityStudentInfo.FirstName = model.FirstName;
-            entityStudentInfo.MiddleName = model.MiddleName;
             entityStudentInfo.LastName = model.LastName;
-            entityStudentInfo.DateOfBirth = model.DateOfBirth;
-            entityStudentInfo.ResidenceNo = model.ResidenceNo;
             entityStudentInfo.MobileNo = model.MobileNo;
             entityStudentInfo.Address = model.Address;
             entityStudentInfo.City = model.City;
@@ -54,8 +52,15 @@ namespace PersonalInformationSystem.Providers
             entityStudentInfo.ComputerLiterate = model.ComputerLiterate;
             entityStudentInfo.Status = model.Status;
 
-            entityStudentInfo.DeletedBy = model.DeletedBy;
-            entityStudentInfo.DeletedOn = DateTime.Now;
+            Payment entPayment = new Payment();
+            entPayment.PaymentId = model.ObjPaymentModel.PaymentId;
+            entPayment.DueAmount = model.ObjPaymentModel.DueAmount;
+            entPayment.PaidAmount = model.ObjPaymentModel.PaidAmount;
+
+            CourseInfo entCourseInfo = new CourseInfo();
+            entCourseInfo.CourseId = model.ObjCourseInfoModel.CourseId;
+            entCourseInfo.CourseName = model.ObjCourseInfoModel.CourseName;
+            entCourseInfo.CourseDuration = model.ObjCourseInfoModel.CourseDuration;
 
 
 
@@ -69,9 +74,13 @@ namespace PersonalInformationSystem.Providers
             else
             {
                 ent.StudentInfoes.Add(entityStudentInfo);
+                ent.CourseInfoes.Add(entCourseInfo);
+                ent.Payments.Add(entPayment);
                 entityStudentInfo.CreatedBy = 1;
                 entityStudentInfo.CreatedOn = DateTime.Now;
             }
+
+            
 
 
             ent.SaveChanges();

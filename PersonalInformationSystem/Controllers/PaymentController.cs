@@ -12,6 +12,14 @@ namespace PersonalInformationSystem.Controllers
         public ActionResult Index()
         {
             return View();
+            
+        }
+
+        // GET
+        public ActionResult Create()
+        {
+            return View();
+
         }
     }
 }
